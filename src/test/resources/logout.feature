@@ -1,7 +1,6 @@
-
+@logout
   Feature: Logout
 
-    @logout
     Scenario: User successfully logout from their account
       Given user is on login page
       And user input username with "standard_user"
