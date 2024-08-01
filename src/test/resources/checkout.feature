@@ -37,6 +37,6 @@
       And user input the last name with "Julian"
       And user input the zip code with ""
       When user click the continue button
-      And user see error message "Error: Postal Code is required"
+      Then user see error message "Error: Postal Code is required"
 
 
