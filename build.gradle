@@ -29,3 +29,20 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.register('cucumber'){
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRunTime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'html:reports/test-report.html',
+                    '--plugin', 'json:reports/test-report.json',
+                    '--plugin', 'pretty',
+                    '--glue', 'stepDef',
+                    'src/test/resources'
+            ]
+        }
+    }
+}
