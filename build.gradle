@@ -23,19 +23,25 @@ dependencies {
     testImplementation 'io.rest-assured:json-schema-validator:5.3.0'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.0'
 
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.17.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.11.0'
 }
 
 test {
     useJUnitPlatform()
 }
 
-tasks.register('cucumber'){
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+tasks.register('cucumber') {
     dependsOn assemble, testClasses
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRunTime + sourceSets.main.output + sourceSets.test.output
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = [
                     '--plugin', 'html:reports/test-report.html',
                     '--plugin', 'json:reports/test-report.json',
