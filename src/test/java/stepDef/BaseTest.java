@@ -11,7 +11,7 @@ public class BaseTest {
     //initialize webdriver
     protected void getDriver(){
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless"); //agar tidak usah menampilkan browser
+        options.addArguments("--headless"); //agar tidak usah menampilkan browser
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
